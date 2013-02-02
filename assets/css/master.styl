@@ -65,11 +65,28 @@ header
   display: none
   group()
 
+  ul
+    inline-list()
+    padding: 14px 0
+
+    li
+      color: rgba(255, 255, 255, .7)
+      background: rgba(0, 0, 0, .25)
+      padding: 6px 20px
+      rounded()
+      cursor: pointer
+      transition()
+
+      &:hover
+        color: #dc314d
+
   .music
     size: 37
     bg: 'music.png'
     margin: 14px 0 14px 30px
     cursor: pointer
+    float: left
+    margin-right: 20px
 
 // list shuffle plugin
 ul[data-liffect="fadeIn"] li
