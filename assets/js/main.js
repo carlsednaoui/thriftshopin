@@ -32,7 +32,7 @@ $(function(){
 
     // only search if there's a number
     if (val.match(/\d+/)){
-      setTimeout(function(){ search(num) }, 300);
+      setTimeout(function(){ search('fashion', [0,num]) }, 300);
     }
 
   });
@@ -45,9 +45,9 @@ $(function(){
   };
 
   // core logic
-  function search(val){
+  function search(keyword, val){
     $('#spin').fadeIn();
-    console.log('searching for products under $' + val)
+    console.log('searching for products under $' + val[1])
     // shuffle() - run this after the images have been appended
     $('#spin').fadeOut();
   }
