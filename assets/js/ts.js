@@ -3,7 +3,7 @@ window.TS = (function() {
   var TileTemplate = '\
 <div class="<%= tags %>">\
 <img src="<%= url %>" />\
-<div class="price"><%= price %></div>\
+<div class="price"><p>$<%= Math.round(price) %></p></div>\
 </div>\
 ';
 

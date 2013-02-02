@@ -30,7 +30,7 @@ body
     padding-bottom: 2px
 
 header
-  background: #ea4645
+  background: #dc314d
   color: #fff
   padding: 50px
   text-align: center
@@ -60,7 +60,7 @@ header
     absolute: top 15px right 15px
 
 .filters
-  background: #c53a3c
+  background: #1c1c1c
   height: 60px
   display: none
   group()
@@ -103,15 +103,31 @@ ul[data-liffect="fadeIn"].play li
   position: absolute
   
 #main
+  width: 100%
 
   div
+    position: relative
 
     .price
-      display: none
+      opacity: 0
+      absolute: top 0 left 0
+      transition()
+      width: 100%
+      height: 100%
+      background: rgba(#000,.7)
+      text-align: center
+      fs: 2.5em
+      color: #fff
+      bold()
+      cursor: pointer
+        
 
     img
       max-width: 200px
       border: none
+
+    &:hover .price
+      opacity: 1
 
 // Isotope Filtering
 
