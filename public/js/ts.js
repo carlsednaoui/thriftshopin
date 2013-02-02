@@ -139,7 +139,7 @@ window.TS = (function() {
           url;
 
         url = _(model.get('Images')).pluck('url_570xN').first();
-        $el.append('<div><img src="'+url+'"><div class="price">'+model.get('price')+'</div>');
+        $el.append('<div class="item"><img src="'+url+'"><div class="price">'+model.get('price')+'</div>');
 
       },
 
