@@ -36,7 +36,7 @@ $(function(){
 
     // only search if there's a number
     if (val.match(/\d+/)){
-      timer = setTimeout(function(){ search('fashion', [0,num]) }, 300);
+      timer = setTimeout(function(){ search('fashion', [0,num], search_callback) }, 300);
     }
 
   });
@@ -76,7 +76,7 @@ $(function(){
 
 
   // core logic
-  function search(keyword, val){
+  function search(keyword, val, cb){
     $('#spin').fadeIn();
     console.log('searching for products under $' + val[1])
     keyword = 'fashion';
@@ -86,11 +86,14 @@ $(function(){
     mainView = new TS.Views.Main({ el: '#main', collection: etsys });
     etsys.fetch({update: true});
     // skimlinks.fetch({update: true});
+  }
+
+  function search_callback(){
     $('#spin').fadeOut();
-    // $('#main').isotope({
-    //   itemSelector : '.item',
-    //   layoutMode : 'masonry'
-    // });
+    $('#main').isotope({
+      itemSelector : '.item',
+      layoutMode : 'masonry'
+    });
   }
 
   // shuffle in images
