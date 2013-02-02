@@ -1,10 +1,14 @@
 {
-  "name": "roots app",
+  "name": "thriftshop.in",
   "version": "0.0.1",
+  "domains": [
+    "thriftshop.in",
+    "www.thriftshop.in"
+  ],
   "dependencies": {
     "connect": "2.6.x"
   },
-  "subdomain": "",
+  "subdomain": "jenius.thriftshop",
   "scripts": {
     "start": "server.js"
   },
