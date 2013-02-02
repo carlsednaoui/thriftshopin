@@ -2,8 +2,10 @@ window.TS = (function() {
 
   var TileTemplate = '\
 <div class="<%= tags %>">\
+<a href="<%= link %>" target="_blank">\
 <img src="<%= url %>" />\
 <div class="price"><p>$<%= Math.round(price) %></p></div>\
+</a>\
 </div>\
 ';
 
@@ -142,9 +144,10 @@ window.TS = (function() {
           url, tags, $tile;
 
         url = _(model.get('Images')).pluck('url_570xN').first();
+        link = model.get('url');
         tags = 'item ' + _(model.get('tags')).map(function(tag) { return tag.replace(' ','-'); }).value().join(' ');
         price = model.get('price');
-        $tile = $( _.template(TileTemplate, { tags: tags, url: url, price:price }) );
+        $tile = $( _.template(TileTemplate, { tags: tags, url: url, price:price, link: link }) );
 
         $el.append($tile).isotope( 'appended', $tile ).isotope( 'reLayout' );
 
