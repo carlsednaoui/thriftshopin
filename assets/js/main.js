@@ -88,14 +88,14 @@ $(function(){
     keyword = 'fashion';
     var mainView, etsys, skimlinks;
     etsys = new TS.Collections.Etsys({ search: keyword, priceRange: val });
-    // skimlinks = new TS.Collections.Skimlinks({ keywords: keyword, priceRange: val });
-    mainView = new TS.Views.Main({ el: '#main', collections: [ etsys ] });
     etsys.fetch({update: true});
+    // skimlinks = new TS.Collections.Skimlinks({ keywords: keyword, priceRange: val });
+    // skimlinks.fetch({update: true});
+    mainView = new TS.Views.Main({ el: '#main', collections: [ etsys ] });
     mainView.on('done', function() {
 
       $('#spin').fadeOut();
     });
-    // skimlinks.fetch({update: true});
   }
 
   // shuffle in images

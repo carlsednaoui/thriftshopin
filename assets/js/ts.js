@@ -28,6 +28,10 @@ window.TS = (function() {
 
     getImage: function() {
       return _(this.get('Images')).pluck('url_570xN').first();
+    },
+
+    getLink: function() {
+      return this.get('url');
     }
 
   });
@@ -97,7 +101,7 @@ window.TS = (function() {
     224, 225, 226, 227, 228, 229, 232, 233, 234, 235, 250, 251, 252,
     253, 254, 255, 256, 257, 258, 259, 260, 261, 262, 263, 264, 267,
     292, 293, 294, 295, 296, 297, 298, 299, 313, 314, 315, 316, 317,
-    318, 319, 320, 321, 323, 324, 325, 326, 327, 326, 327, 328, 329 ].join(' OR '),
+    318, 319, 320, 321, 323, 324, 325, 326, 327, 326, 327, 328, 329 ],
 
     initialize: function(options) {
       // console.log('Etsys#initialize:'+this.cid, this, arguments);
@@ -127,7 +131,7 @@ window.TS = (function() {
       query = options.keywords + ' ' +
         'AND price:[' + options.min_price + ' TO ' + options.max_price + '] ' +
         'AND currency:USD' +
-        'AND categoryId:(' + this.categories + ')';
+        'AND categoryId:(' + this.categories.join(' OR ') + ')';
 
       _.extend(options.data, this.search, {
         q: query,
@@ -154,6 +158,7 @@ window.TS = (function() {
 
       onSync: function() {
         // console.log('HomeView#sync.'+this.cid, this, arguments);
+        this.$el.isotope( 'reLayout' );
         this.trigger('done');
       },
 
@@ -166,10 +171,10 @@ window.TS = (function() {
         url = model.getImage();
         tags = model.getTags().join(' ');
         price = model.getPrice();
-        link = model.get('url');
+        link = model.getLink();
         $tile = $( _.template(TileTemplate, { tags: tags, url: url, link: link, price: price }) );
 
-        $el.append($tile).isotope( 'appended', $tile ).isotope( 'reLayout' );
+        $el.append($tile).isotope( 'appended', $tile );
 
       },
 
