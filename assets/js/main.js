@@ -37,12 +37,6 @@ $(function(){
 
   });
 
-  // shuffle in images
-  jQuery.fn.shuffleElements = function () {
-      var o = $(this);
-      for (var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
-      return o;
-  };
 
   // core logic
   function search(keyword, val){
@@ -52,6 +46,13 @@ $(function(){
     $('#spin').fadeOut();
   }
 
+  // shuffle in images
+  jQuery.fn.shuffleElements = function () {
+      var o = $(this);
+      for (var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+      return o;
+  };
+  
   function shuffle(){
     var play = 0;
     $("ul[data-liffect] li").shuffleElements().each(function (i) {
