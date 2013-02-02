@@ -203,6 +203,9 @@ body {
 .toorich {
   display: none;
   line-height: 1.4em;
+  font-weight: 400;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+  opacity: 0.8;
 }
 .toorich a {
   font-weight: 700;
@@ -274,6 +277,12 @@ ul[data-liffect="fadeIn"].play li {
   -moz-animation-play-state: running;
   -o-animation-play-state: running;
   animation-play-state: running;
+}
+#music {
+  display: none;
+  position: absolute;
+  width: 30px;
+  height: 80px;
 }
 @-webkit-keyframes fadeIn {
   0% {
