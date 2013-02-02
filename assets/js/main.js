@@ -9,6 +9,7 @@ $(function(){
 
   // initialize masonry
   $('#main').isotope({
+    itemSelector : '.item',
     layoutMode : 'masonry'
   });
 

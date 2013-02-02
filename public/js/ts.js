@@ -138,14 +138,14 @@ window.TS = (function() {
         // console.log('HomeView#addTiles.'+this.cid, this, arguments);
 
         var $el = this.$el,
-          url, tags, html;
+          url, tags, $tile;
 
         url = _(model.get('Images')).pluck('url_570xN').first();
-        tags = _(model.get('tags')).map(function(tag) { return tag.replace(' ','-'); }).value().join(' ');
+        tags = 'item ' + _(model.get('tags')).map(function(tag) { return tag.replace(' ','-'); }).value().join(' ');
         price = model.get('price');
-        html = _.template(TileTemplate, { tags: tags, url: url, price:price });
-        $el.append(html);
-        // $el.append('<div class="'+tags+'"><img src="'+url+'"><div class="price">'+model.get('price')+'</div>');
+        $tile = $( _.template(TileTemplate, { tags: tags, url: url, price:price }) );
+
+        $el.append($tile).isotope( 'appended', $tile ).isotope( 'reLayout' );
 
       },
 
