@@ -41,6 +41,39 @@ $(function(){
 
   });
 
+  // tag aggregation
+  function popular_tags(){
+    var all = []
+    $('#main li').each(function(){
+      var tags = $(this).attr('class');
+      all.push(tags.split(' '));
+    });
+
+    var counts = count(_.flatten(all));
+    var groups = _.groupBy(counts, function(a){ return a[1] });
+    var by_count = _.flatten(_.toArray(groups)).reverse();
+    var res = [];
+    for (var i = 1; i < by_count.length; i += 2) { res.push(by_count[i]); }
+    return res
+
+    function count(arr) {
+        var a = [], prev;
+        
+        arr.sort();
+        for ( var i = 0; i < arr.length; i++ ) {
+            if ( arr[i] !== prev ) {
+                a.push([arr[i], 1]);
+            } else {
+                a[a.length-1][1]++;
+            }
+            prev = arr[i];
+        }
+        
+        return a;
+    }
+  }
+  popular_tags()
+
 
   // core logic
   function search(keyword, val){

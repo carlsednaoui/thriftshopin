@@ -21,11 +21,17 @@
 </header>
 <div id="main">
   <ul data-liffect="fadeIn">
-    <li></li>
+    <li class="one two three"></li>
+    <li class="one four"></li>
+    <li class="two five six"></li>
+    <li class="one"></li>
   </ul>
 </div>
   </body>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/1.0.0-rc.3/lodash.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/0.9.10/backbone-min.js"></script>
+  <script src="/js/backbone.localStorage.js"></script>
   <script src="/js/isotope.min.js"></script>
   <script src="/js/spin.min.js"></script>
   <script src="/js/main.js"></script><script>protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://'; address = protocol + window.location.host + window.location.pathname + '/ws'; socket = new WebSocket(address);
