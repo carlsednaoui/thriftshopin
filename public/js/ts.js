@@ -1,7 +1,7 @@
 window.TS = (function() {
 
   var TileTemplate = '\
-<div class="<%= tags %>">\
+<div class="item <%= tags %>">\
 <a href="<%= link %>" target="_blank">\
 <img src="<%= url %>" />\
 <div class="price"><p>$<%= Math.round(price) %></p></div>\
@@ -15,7 +15,21 @@ window.TS = (function() {
 
     initialize: function( attributes ) {
       // console.log('Etsy#initialize:'+this.cid, this, arguments);
+    },
+
+    getTags: function() {
+      // console.log('Etsys#getTags:'+this.cid, this, arguments);
+      return _(this.get('tags')).map(function(tag) { return tag.replace(' ','-'); }).value();
+    },
+
+    getPrice: function() {
+      return this.get('price');
+    },
+
+    getImage: function() {
+      return _(this.get('Images')).pluck('url_570xN').first();
     }
+
   });
 
   var Etsys =  Backbone.Collection.extend({
@@ -130,24 +144,30 @@ window.TS = (function() {
       initialize: function( options ) {
         // console.log('HomeView.initialize.'+this.cid, this, arguments);
 
-        this.collection = options.collection;
+        this.collections = _.isArray(options.collections) ? options.collections : [ options.collections ];
 
-        this.listenTo(this.collection, {
-          'add': this.addTiles
-        });
+        _.each(this.collections, function(collection) {
+          this.listenTo(collection, 'add', this.addTiles);
+          this.listenTo(collection, 'sync', this.onSync);
+        }, this);
+      },
+
+      onSync: function() {
+        // console.log('HomeView#sync.'+this.cid, this, arguments);
+        this.trigger('done');
       },
 
       addTiles: function( model, collection, options ) {
-        // console.log('HomeView#addTiles.'+this.cid, this, arguments);
+        console.log('HomeView#addTiles.'+this.cid, this, arguments);
 
         var $el = this.$el,
           url, tags, $tile;
 
-        url = _(model.get('Images')).pluck('url_570xN').first();
+        url = model.getImage();
+        tags = model.getTags().join(' ');
+        price = model.getPrice();
         link = model.get('url');
-        tags = 'item ' + _(model.get('tags')).map(function(tag) { return tag.replace(' ','-'); }).value().join(' ');
-        price = model.get('price');
-        $tile = $( _.template(TileTemplate, { tags: tags, url: url, price:price, link: link }) );
+        $tile = $( _.template(TileTemplate, { tags: tags, url: url, link: link, price: price }) );
 
         $el.append($tile).isotope( 'appended', $tile ).isotope( 'reLayout' );
 

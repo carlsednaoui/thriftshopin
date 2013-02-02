@@ -89,10 +89,13 @@ $(function(){
     var mainView, etsys, skimlinks;
     etsys = new TS.Collections.Etsys({ search: keyword, priceRange: val });
     // skimlinks = new TS.Collections.Skimlinks({ keywords: keyword, priceRange: val });
-    mainView = new TS.Views.Main({ el: '#main', collection: etsys });
+    mainView = new TS.Views.Main({ el: '#main', collections: [ etsys ] });
     etsys.fetch({update: true});
+    mainView.on('done', function() {
+
+      $('#spin').fadeOut();
+    });
     // skimlinks.fetch({update: true});
-    $('#spin').fadeOut();
   }
 
   // shuffle in images
