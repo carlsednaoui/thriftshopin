@@ -1,5 +1,11 @@
 window.TS = (function() {
 
+  var TileTemplate = '\
+<div class="<%= tags %>">\
+<img src="<%= url %>"\
+<div class="price"><%= price %></div>\
+';
+
   var Etsy = Backbone.Model.extend({
 
     idAttribute: 'listing_id',
@@ -45,6 +51,7 @@ window.TS = (function() {
 
       _.extend(options.data, this.search, {
         includes: 'Images',
+        sort_on: 'score',
         api_key: 'ikb4982yq9ou5ddb2z2dxa3i'
       });
 
@@ -130,16 +137,15 @@ window.TS = (function() {
       addTiles: function( model, collection, options ) {
         // console.log('HomeView#addTiles.'+this.cid, this, arguments);
 
-        // var tile = new TileView({
-        //   model: model,
-        //   collection: collection
-        // });
-
         var $el = this.$el,
-          url;
+          url, tags, html;
 
         url = _(model.get('Images')).pluck('url_570xN').first();
-        $el.append('<div><img src="'+url+'"><div class="price">'+model.get('price')+'</div>');
+        tags = _(model.get('tags')).map(function(tag) { return tag.replace(' ','-'); }).value().join(' ');
+        price = model.get('price');
+        html = _.template(TileTemplate, { tags: tags, url: url, price:price });
+        $el.append(html);
+        // $el.append('<div class="'+tags+'"><img src="'+url+'"><div class="price">'+model.get('price')+'</div>');
 
       },
 

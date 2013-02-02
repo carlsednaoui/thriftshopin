@@ -87,7 +87,6 @@ $(function(){
     mainView = new TS.Views.Main({ el: '#main', collection: etsys });
     etsys.fetch({update: true});
     // skimlinks.fetch({update: true});
-
     $('#spin').fadeOut();
   }
 
