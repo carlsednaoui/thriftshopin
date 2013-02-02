@@ -104,4 +104,13 @@ $(function(){
     });
   }
 
+  // music popup
+
+  $('#music').css({ top: (window.innerHeight - 383)/2, left: (window.innerWidth - 300)/2 });
+
+  $('.settings').on('click', function(){
+    $('#music').toggle()
+    return false
+  });
+
 });
