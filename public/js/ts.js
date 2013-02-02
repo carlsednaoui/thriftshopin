@@ -20,9 +20,15 @@ window.TS = (function() {
 
       this.search = {
         keywords: options.search,
-        min_price: options.priceRange[0],
-        max_price: options.priceRange[1]
+        min_price: parseInt(options.priceRange[0], 10),
+        max_price: parseInt(options.priceRange[1], 10)
       };
+    },
+
+    getTags: function() {
+      // console.log('Etsys#getTags:'+this.cid, this, arguments);
+
+
     },
 
     parse: function(resp, options) {
@@ -51,7 +57,7 @@ window.TS = (function() {
     idAttribute: 'productId',
 
     initialize: function( attributes ) {
-      // console.log('Etsy#initialize:'+this.cid, this, arguments);
+      console.log('Etsy#initialize:'+this.cid, this, arguments);
     }
   });
 
@@ -61,13 +67,21 @@ window.TS = (function() {
 
     url: 'http://api-product.skimlinks.com/query',
     
+    categories: [ 114, 115, 116, 117, 118, 119, 123, 124, 125, 126,
+    127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 209, 210,
+    211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223,
+    224, 225, 226, 227, 228, 229, 232, 233, 234, 235, 250, 251, 252,
+    253, 254, 255, 256, 257, 258, 259, 260, 261, 262, 263, 264, 267,
+    292, 293, 294, 295, 296, 297, 298, 299, 313, 314, 315, 316, 317,
+    318, 319, 320, 321, 323, 324, 325, 326, 327, 326, 327, 328, 329 ].join(' OR '),
+
     initialize: function(options) {
       // console.log('Etsys#initialize:'+this.cid, this, arguments);
 
       this.search = {
         keywords: options.search,
-        min_price: options.priceRange[0],
-        max_price: options.priceRange[1]
+        min_price: parseInt(options.priceRange[0], 10),
+        max_price: parseInt(options.priceRange[1], 10)
       };
 
     },
@@ -86,7 +100,10 @@ window.TS = (function() {
       options = options || {};
       options.data = options.data || {};
       options.dataType = 'jsonp';
-      query = options.keywords + ' AND price: [' + options.min_price + ' TO ' + options.max_price + ']';
+      query = options.keywords + ' ' +
+        'AND price:[' + options.min_price + ' TO ' + options.max_price + '] ' +
+        'AND currency:USD' +
+        'AND categoryId:(' + this.categories + ')';
 
       _.extend(options.data, this.search, {
         q: query,
@@ -98,48 +115,32 @@ window.TS = (function() {
     }
   });
 
-  var Tiles = Backbone.View.extend({
-    
-      el: '#home',
-
-      events: {
-        'keydown #searchbox': 'submit'
-      },
+  var Main = Backbone.View.extend({
 
       initialize: function( options ) {
         // console.log('HomeView.initialize.'+this.cid, this, arguments);
+
+        this.collection = options.collection;
+
+        this.listenTo(this.collection, {
+          'add': this.addTiles
+        });
       },
 
-      addEtsy: function( model, collection, options ) {
-        // console.log('HomeView#addEtsy.'+this.cid, this, arguments);
+      addTiles: function( model, collection, options ) {
+        // console.log('HomeView#addTiles.'+this.cid, this, arguments);
 
-        var tile = new TileView({
-          model: model,
-          collection: collection
-        });
+        // var tile = new TileView({
+        //   model: model,
+        //   collection: collection
+        // });
 
-        _(model.get('Images'))
-          .pluck('url_570xN')
-          .each(function(url) {
-            $('#home').append('<img src="'+url+'">');
-          });
+        var $el = this.$el,
+          url;
 
-      },
+        url = _(model.get('Images')).pluck('url_570xN').first();
+        $el.append('<div><img src="'+url+'"><div class="price">'+model.get('price')+'</div>');
 
-      submit: function(e) {
-        // console.log('HomeView.submit.'+this.cid, this, arguments);
-        if ( e !== void 0 && e.keyCode !== 13 ) return;
-
-        var etsys = new Etsys({
-          keywords: $(e.currentTarget).val(),
-          priceRange: [ 0, 20 ]
-        });
-
-        this.listenTo( etsys, {
-          'add': this.addEtsy
-        });
-
-        etsys.fetch({update: true});
       },
 
       render: function( model, collection, options ) {
@@ -167,7 +168,7 @@ window.TS = (function() {
     },
 
     Views: {
-      Tiles: Tiles
+      Main: Main
     }
   };
 
