@@ -7,10 +7,14 @@ $(function(){
   // keep it in the center
   $('#spin').css({ left: (window.innerWidth/2) + "px" })
 
+  var timer = null;
   $('input').on('keyup', function(){
     var val = $(this).val();
     var num = val.replace('$','');
-    $('.toorich').hide()
+
+    // setup
+    $('.toorich').hide();
+    clearTimeout(timer);
 
     // make sure theres a \$
     if (!val.match(/\$/)){
@@ -32,7 +36,7 @@ $(function(){
 
     // only search if there's a number
     if (val.match(/\d+/)){
-      setTimeout(function(){ search('fashion', [0,num]) }, 300);
+      timer = setTimeout(function(){ search('fashion', [0,num]) }, 300);
     }
 
   });
@@ -52,7 +56,7 @@ $(function(){
       for (var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
       return o;
   };
-  
+
   function shuffle(){
     var play = 0;
     $("ul[data-liffect] li").shuffleElements().each(function (i) {
