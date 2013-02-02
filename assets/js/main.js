@@ -47,6 +47,14 @@ $(function(){
     $('#spin').fadeIn();
     console.log('searching for products under $' + val[1])
     // shuffle() - run this after the images have been appended
+    keyword = 'fashion';
+    var mainView, etsys, skimlinks;
+    etsys = new TS.Collections.Etsys({ search: keyword, priceRange: val });
+    // skimlinks = new TS.Collections.Skimlinks({ keywords: keyword, priceRange: val });
+    mainView = new TS.Views.Main({ el: '#main', collection: etsys });
+    etsys.fetch({update: true});
+    // skimlinks.fetch({update: true});
+
     $('#spin').fadeOut();
   }
 
