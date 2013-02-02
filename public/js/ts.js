@@ -2,8 +2,9 @@ window.TS = (function() {
 
   var TileTemplate = '\
 <div class="<%= tags %>">\
-<img src="<%= url %>"\
+<img src="<%= url %>"/>\
 <div class="price"><%= price %></div>\
+</div>\
 ';
 
   var Etsy = Backbone.Model.extend({
