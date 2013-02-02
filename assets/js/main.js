@@ -5,7 +5,12 @@ $(function(){
   new Spinner(opts).spin(document.getElementById('spin'));
 
   // keep it in the center
-  $('#spin').css({ left: (window.innerWidth/2) + "px" })
+  $('#spin').css({ left: (window.innerWidth/2) + "px" });
+
+  // initialize masonry
+  $('#main').isotope({
+    layoutMode : 'masonry'
+  });
 
   var timer = null;
   $('input').on('keyup', function(){
@@ -36,7 +41,7 @@ $(function(){
 
     // only search if there's a number
     if (val.match(/\d+/)){
-      timer = setTimeout(function(){ search('fashion', [0,num], search_callback) }, 300);
+      timer = setTimeout(function(){ search('fashion', [0,num]) }, 300);
     }
 
   });
@@ -86,14 +91,7 @@ $(function(){
     mainView = new TS.Views.Main({ el: '#main', collection: etsys });
     etsys.fetch({update: true});
     // skimlinks.fetch({update: true});
-  }
-
-  function search_callback(){
     $('#spin').fadeOut();
-    $('#main').isotope({
-      itemSelector : '.item',
-      layoutMode : 'masonry'
-    });
   }
 
   // shuffle in images
