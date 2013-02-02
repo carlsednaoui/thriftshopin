@@ -36,7 +36,7 @@ $(function(){
 
     // only search if there's a number
     if (val.match(/\d+/)){
-      timer = setTimeout(function(){ search('fashion', [0,num]) }, 300);
+      timer = setTimeout(function(){ search('fashion', [0,num], search_callback) }, 300);
     }
 
   });
@@ -76,10 +76,9 @@ $(function(){
 
 
   // core logic
-  function search(keyword, val){
+  function search(keyword, val, cb){
     $('#spin').fadeIn();
     console.log('searching for products under $' + val[1])
-    // shuffle() - run this after the images have been appended
     keyword = 'fashion';
     var mainView, etsys, skimlinks;
     etsys = new TS.Collections.Etsys({ search: keyword, priceRange: val });
@@ -87,7 +86,17 @@ $(function(){
     mainView = new TS.Views.Main({ el: '#main', collection: etsys });
     etsys.fetch({update: true});
     // skimlinks.fetch({update: true});
+<<<<<<< HEAD
+=======
+  }
+
+  function search_callback(){
+>>>>>>> d7043c37f7a356264ac6b751099201a4bc962836
     $('#spin').fadeOut();
+    $('#main').isotope({
+      itemSelector : '.item',
+      layoutMode : 'masonry'
+    });
   }
 
   // shuffle in images
@@ -116,7 +125,10 @@ $(function(){
   $('#music').css({ top: (window.innerHeight - 383)/2, left: (window.innerWidth - 300)/2 });
 
   $('.settings').on('click', function(){
-    $('#music').toggle()
+    $('.filters').slideToggle();
+    $('.music').on('click', function(){
+      $('#music').fadeToggle();
+    });
     return false
   });
 

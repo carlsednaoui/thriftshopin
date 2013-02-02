@@ -141,11 +141,15 @@ window.TS = (function() {
           url, tags, html;
 
         url = _(model.get('Images')).pluck('url_570xN').first();
+<<<<<<< HEAD
         tags = _(model.get('tags')).map(function(tag) { return tag.replace(' ','-'); }).value().join(' ');
         price = model.get('price');
         html = _.template(TileTemplate, { tags: tags, url: url, price:price });
         $el.append(html);
         // $el.append('<div class="'+tags+'"><img src="'+url+'"><div class="price">'+model.get('price')+'</div>');
+=======
+        $el.append('<div class="item"><img src="'+url+'"><div class="price">'+model.get('price')+'</div>');
+>>>>>>> d7043c37f7a356264ac6b751099201a4bc962836
 
       },
 
