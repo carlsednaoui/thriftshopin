@@ -203,6 +203,9 @@ body {
 .toorich {
   display: none;
   line-height: 1.4em;
+  font-weight: 400;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+  opacity: 0.8;
 }
 .toorich a {
   font-weight: 700;
