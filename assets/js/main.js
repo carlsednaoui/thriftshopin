@@ -1,3 +1,7 @@
+define(function(require) {
+
+  var TS = require('ts');
+
 $(function(){
 
   // spin.js
@@ -86,7 +90,7 @@ $(function(){
     etsys.fetch({update: true});
     // skimlinks = new TS.Collections.Skimlinks({ keywords: keyword, priceRange: val });
     // skimlinks.fetch({update: true});
-    mainView = new TS.Views.Main({ el: '#main', width: 170 collections: [ etsys ] });
+    mainView = new TS.Views.Main({ el: '#main', width: 170, collections: [ etsys ] });
     mainView.on('done', function() { search_callback(); });
   }
 
@@ -149,5 +153,10 @@ $(function(){
     });
     return false
   });
+
+});
+
+// this is what you'll get if you require('main') somewhere else
+return {};
 
 });
