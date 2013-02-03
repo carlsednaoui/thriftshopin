@@ -102,7 +102,7 @@ $(function(){
 
     $(window).on('scroll', _.throttle(function() {
       if( etsys.syncing ) return;
-      if( ($document.height()-$window.height()-$window.scrollTop()) < 500 ) return;
+      if( ($document.height()-$window.height()-$window.scrollTop()) < 300 ) return;
       etsys.fetch({update: true});
     }, 500) );
 
