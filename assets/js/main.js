@@ -1,6 +1,8 @@
 define(function(require) {
 
-  var TS = require('ts');
+  var Spinner = require('spin'),
+    TS = require('ts'),
+    Backbone = require('backbone');
 
 $(function(){
 
