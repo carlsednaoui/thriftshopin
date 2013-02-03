@@ -102,19 +102,21 @@ $(function(){
     $('#spin').fadeIn();
     console.log('searching for products under $' + val[1])
     keyword = 'fashion';
+    if( val[1] == 0 ) return;
+    window.stop();
     var mainView, etsys, skimlinks;
-    etsys = new TS.Collections.Etsys({ search: keyword, priceRange: [ val[1]*.80, val[1] ] });
+    etsys = new TS.Collections.Etsys({ search: keyword, priceRange: [ val[1]*.80, val[1]*1.1 ] });
     etsys.fetch({update: true});
     // skimlinks = new TS.Collections.Skimlinks({ search: keyword, priceRange: val });
     // skimlinks.fetch({update: true});
     var $window = $(window),
       $document = $(document);
-
-    $(window).on('scroll', _.throttle(function() {
+    $(window).off('scroll');
+    $(window).on('scroll', _.debounce(function() {
       if( etsys.syncing ) return;
       if( ($document.height()-$window.height()-$window.scrollTop()) < 300 ) return;
       etsys.fetch({update: true});
-    }, 500) );
+    }, 500, true) );
 
     mainView = new TS.Views.Main({ el: '#main', width: 160, collections: [ etsys ] });
     mainView.on('done', function() { search_callback(); });
