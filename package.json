@@ -3,7 +3,9 @@
   "version": "1.0.1",
   "domains": [
     "thriftshop.in",
-    "www.thriftshop.in"
+    "www.thriftshop.in",
+    "thriftshopp.in",
+    "www.thriftshopp.in"
   ],
   "dependencies": {
     "connect": "2.6.x"
