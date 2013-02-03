@@ -6,8 +6,8 @@ define(function(require) {
 <div class="item <%= tags %>">\
 <a href="<%= link %>" target="_blank">\
 <img src="<%= url %>" width="<%= width %>" height="<%= height %>" />\
-</a>\
 <div class="price"><p>$<%= Math.round(price) %></p></div>\
+</a>\
 <ul class="social">\
   <li class="twitter">\
     <a href="http://twitter.com" target="_blank"></a>\
