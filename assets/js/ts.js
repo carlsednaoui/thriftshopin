@@ -7,12 +7,18 @@ define(function(require) {
 <a href="<%= link %>" target="_blank">\
 <img src="<%= url %>" width="<%= width %>" height="<%= height %>" />\
 <div class="price"><p>$<%= Math.round(price) %></p></div>\
-<ul class="social">\
-  <li class="twitter"><a href=""></a></li>\
-  <li class="fbook"><a href=""></a></li>\
-  <li class="pinterest"><a href=""></a></li>\
-</ul>\
 </a>\
+<ul class="social">\
+  <li class="twitter">\
+    <a href="http://twitter.com/home?status=<%= link %> - via thriftshop.in" target="_blank"></a>\
+  </li>\
+  <li class="fbook">\
+    <a href="https://www.facebook.com/sharer.php?t=<%= name %>&u=<%= link %> - via thriftshop.in" target="_blank"></a>\
+  </li>\
+  <li class="pinterest">\
+    <a href="http://pinterest.com/pin/create/button/?url=<%= link %>&media=<%= url %>&description=<%= name %> via thriftshop.in" target="_blank"></a>\
+  </li>\
+</ul>\
 </div>\
 ';
 
@@ -54,6 +60,10 @@ define(function(require) {
 
       getLink: function() {
         return this.get('url');
+      },
+
+      getName: function(){
+        return this.get('title');
       }
 
     });
@@ -224,7 +234,8 @@ define(function(require) {
           tags = model.getTags().join(' ');
           price = model.getPrice();
           link = model.getLink();
-          $tile = $( _.template(TileTemplate, { tags: tags, url: image.url, width: image.width, height: image.height, link: link, price: price }) );
+          name = model.getName();
+          $tile = $( _.template(TileTemplate, { tags: tags, url: image.url, width: image.width, height: image.height, link: link, price: price, name: name }) );
 
           $el.append($tile).isotope( 'appended', $tile );
 

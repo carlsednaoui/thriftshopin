@@ -6,6 +6,12 @@ define(function(require) {
 
 $(function(){
 
+  // nordstrom detect
+  if (window.location.href.match(/nordstrom/)) {
+    $('header').addClass('nordstrom')
+    $('h1').html("i wanna spend <input type='text' value='$20' /> on awesome stuff")
+  }
+
   // spin.js
   var opts = {lines: 7, length: 3, width: 4, radius: 6, corners: 1, rotate: 0, color: '#fff', speed: 1, trail: 60, shadow: false, hwaccel: false, className: 'spinner', zIndex: 2e9, top: 'auto', left: 'auto'};
   new Spinner(opts).spin(document.getElementById('spin'));
@@ -13,10 +19,9 @@ $(function(){
   // keep it in the center
   $('#spin').css({ left: (window.innerWidth/2) + "px" });
 
-  // initialize masonry
-
   var timer = null;
   $('input').on('keyup', function(){
+
     var val = $(this).val();
     var num = val.replace('$','');
 
@@ -143,6 +148,11 @@ $(function(){
     });
     return false
   });
+
+  // initialize
+  var e = jQuery.Event("keyup");
+  e.which = 50;
+  $("input").trigger(e);
 
 });
 
