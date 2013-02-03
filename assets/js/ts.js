@@ -1,5 +1,7 @@
 define(function(require) {
 
+  var Backbone = require('backbone');
+
     var TileTemplate = '\
 <div class="item <%= tags %>">\
 <a href="<%= link %>" target="_blank">\
