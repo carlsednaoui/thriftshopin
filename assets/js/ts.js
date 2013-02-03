@@ -6,13 +6,19 @@ define(function(require) {
 <div class="item <%= tags %>">\
 <a href="<%= link %>" target="_blank">\
 <img src="<%= url %>" width="<%= width %>" height="<%= height %>" />\
+</a>\
 <div class="price"><p>$<%= Math.round(price) %></p></div>\
 <ul class="social">\
-  <li class="twitter"><a href=""></a></li>\
-  <li class="fbook"><a href=""></a></li>\
-  <li class="pinterest"><a href=""></a></li>\
+  <li class="twitter">\
+    <a href="http://twitter.com" target="_blank"></a>\
+  </li>\
+  <li class="fbook">\
+    <a href="http://facebook.com" target="_blank"></a>\
+  </li>\
+  <li class="pinterest">\
+    <a href="http://pinterest.com" target="_blank"></a>\
+  </li>\
 </ul>\
-</a>\
 </div>\
 ';
 
