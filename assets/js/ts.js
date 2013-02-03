@@ -15,6 +15,9 @@ window.TS = (function() {
 
     initialize: function( attributes ) {
       // console.log('Etsy#initialize:'+this.cid, this, arguments);
+      // this.scale = this.collection.search.min_price/this.collection.search.max_price;
+
+      // this.scale = parseInt(this.get('price'),10) !== this.collection.search.max_price ? 0.5 : 1;
     },
 
     getTags: function() {
@@ -26,12 +29,20 @@ window.TS = (function() {
       return this.get('price');
     },
 
+    getPriceScaling: function() {
+      // return this.collection.
+    },
+
     getImage: function(width) {
       var image = _(this.get('Images')).first();
+      // width = (this.scale || 1) * width;
       return {
-        url: image['url_570xN'],
-        width: width,
-        height: image.full_height*(width/image.full_width) >> 0
+        url: image['url_170x135'],
+        width: 170,
+        height: 135
+        // width: width,
+        // height: ((570*image.full_height)/image.full_width * width)/570 >> 0
+
       };
     },
 
@@ -184,7 +195,7 @@ window.TS = (function() {
         var $el = this.$el,
           image, tags, $tile;
 
-        image = model.getImage(250);
+        image = model.getImage(this.options.width);
         tags = model.getTags().join(' ');
         price = model.getPrice();
         link = model.getLink();
