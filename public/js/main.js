@@ -76,7 +76,7 @@ $(function(){
   }
 
 
-  // core logic
+  // search logic
   function search(keyword, val, cb){
     $('#spin').fadeIn();
     console.log('searching for products under $' + val[1])
@@ -114,27 +114,6 @@ $(function(){
       $('#main').isotope({ filter: "" }, function(){
         console.log('done');
       });
-    });
-  }
-
-  // shuffle in images
-  jQuery.fn.shuffleElements = function () {
-      var o = $(this);
-      for (var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
-      return o;
-  };
-
-  function shuffle(){
-    var play = 0;
-    $("ul[data-liffect] li").shuffleElements().each(function (i) {
-        $(this).attr("style", "-webkit-animation-delay:" + i * 100 + "ms;"
-                + "-moz-animation-delay:" + i * 100 + "ms;"
-                + "-o-animation-delay:" + i * 100 + "ms;"
-                + "animation-delay:" + i * 100 + "ms;");
-        play++;
-        if (play == $("ul[data-liffect] li").size()) {
-            $("ul[data-liffect]").addClass("play")
-        }
     });
   }
 
