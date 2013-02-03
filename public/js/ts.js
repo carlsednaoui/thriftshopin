@@ -45,10 +45,9 @@ define(function(require) {
         // width = (this.scale || 1) * width;
         return {
           url: image['url_170x135'],
-          width: 170,
-          height: 135
-          // width: width,
-          // height: ((570*image.full_height)/image.full_width * width)/570 >> 0
+          width: width,
+          height: ((170*135)/170 * width)/170 >> 0
+          // height: ((170*image.full_height)/image.full_width * width)/170 >> 0
 
         };
       },
@@ -73,11 +72,22 @@ define(function(require) {
           min_price: parseInt(options.priceRange[0], 10),
           max_price: parseInt(options.priceRange[1], 10)
         };
+
+        this.lastOffset = 0;
+        this.syncing = false;
+
+        this.on('sync', function() {
+          this.syncing = false;
+          this.lastOffset+=50;
+        });
+
+        this.on('request', function() {
+          this.syncing = true;
+        });
       },
 
       getTags: function() {
         // console.log('Etsys#getTags:'+this.cid, this, arguments);
-
 
       },
 
@@ -96,6 +106,8 @@ define(function(require) {
         _.extend(options.data, this.search, {
           includes: 'Images',
           sort_on: 'score',
+          offset: this.lastOffset,
+          limit: '50',
           api_key: 'ikb4982yq9ou5ddb2z2dxa3i'
         });
 
@@ -116,8 +128,8 @@ define(function(require) {
         
       model: Skimlink,
 
-      url: 'http://api-product.skimlinks.com/query',
-      
+      url: 'http://api-product.skimlinks.com/jsonp/query',
+
       categories: [ 114, 115, 116, 117, 118, 119, 123, 124, 125, 126,
       127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 209, 210,
       211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223,
@@ -151,11 +163,12 @@ define(function(require) {
         options = options || {};
         options.data = options.data || {};
         options.dataType = 'jsonp';
-        query = options.keywords + ' ' +
-          'AND price:[' + options.min_price + ' TO ' + options.max_price + '] ' +
-          'AND currency:USD' +
+        query = this.search.keywords + ' ' +
+          'AND price:[' + this.search.min_price + ' TO ' + this.search.max_price + '] ' +
+          'AND currency:USD' /*+
           'AND categoryId:(' + this.categories.join(' OR ') + ')';
-
+            // imageBad=false*/
+            debugger;
         _.extend(options.data, this.search, {
           q: query,
           format: 'json',
@@ -181,8 +194,13 @@ define(function(require) {
 
           $el.isotope({
             itemSelector : '.item',
-            layoutMode : 'masonry'
+            layoutMode : 'masonry',
+            masonry: {
+              columnWidth: 160
+            }
           });
+
+          // $(window).off('scroll');
 
           _.each(this.collections, function(collection) {
             this.listenTo(collection, 'add', this.addTiles);
