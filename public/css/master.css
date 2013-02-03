@@ -272,19 +272,33 @@ header .settings {
   top: 15px;
   right: 15px;
 }
+@media only screen and (max-width: 500px) {
+  header .settings {
+    display: none;
+  }
+}
+header .mail {
+  background: url("/img/mail.png") no-repeat;
+  width: 27px;
+  height: 27px;
+  text-indent: -9999px;
+  display: block;
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+  opacity: 0.8;
+}
+@media only screen and (max-width: 500px) {
+  header .mail {
+    display: none;
+  }
+}
 .filters {
   background: #1c1c1c;
   height: 60px;
   display: none;
-  zoom: 1;
-}
-.filters:before,
-.filters:after {
-  content: "";
-  display: table;
-}
-.filters:after {
-  clear: both;
+  overflow: hidden;
 }
 .filters ul {
   zoom: 1;
@@ -312,6 +326,7 @@ header .settings {
   color: rgba(255,255,255,0.7);
   background: rgba(0,0,0,0.25);
   padding: 6px 20px;
+  margin-bottom: 20px;
   -webkit-border-radius: 999px;
   -moz-border-radius: 999px;
   -o-border-radius: 999px;
