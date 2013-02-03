@@ -164,10 +164,11 @@ $(function(){
     var uri = $(this).parent().find('input').val();
     $.ajax({
       type: 'POST',
-      data: "email=" + uri,
-      url: " http://thriftshopinmailer.herokuapp.com/",
+      data: "email_address=" + uri + "&callback=?",
+      url: "http://thriftshopinmailer.herokuapp.com/",
       success: function(){
-        console.log('worked!')
+        $('#email input').val('');
+        $('#email .close-reveal-modal').trigger('click');
       }
     })
   });

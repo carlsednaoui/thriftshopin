@@ -295,6 +295,7 @@ body {
   font-weight: 400;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
   opacity: 0.8;
+  margin-top: 60px;
 }
 .toorich a {
   font-weight: 700;
