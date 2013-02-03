@@ -3,7 +3,7 @@ window.TS = (function() {
   var TileTemplate = '\
 <div class="item <%= tags %>">\
 <a href="<%= link %>" target="_blank">\
-<img src="<%= url %>" width="170" height="135" />\
+<img src="<%= url %>" width="<%= width %>" height="<%= height %>" />\
 <div class="price"><p>$<%= Math.round(price) %></p></div>\
 </a>\
 </div>\
@@ -26,8 +26,13 @@ window.TS = (function() {
       return this.get('price');
     },
 
-    getImage: function() {
-      return _(this.get('Images')).pluck('url_170x135').first();
+    getImage: function(width) {
+      var image = _(this.get('Images')).first();
+      return {
+        url: image['url_570xN'],
+        width: width,
+        height: image.full_height*(width/image.full_width) >> 0
+      };
     },
 
     getLink: function() {
@@ -177,13 +182,13 @@ window.TS = (function() {
         // console.log('HomeView#addTiles.'+this.cid, this, arguments);
 
         var $el = this.$el,
-          url, tags, $tile;
+          image, tags, $tile;
 
-        url = model.getImage();
+        image = model.getImage(250);
         tags = model.getTags().join(' ');
         price = model.getPrice();
         link = model.getLink();
-        $tile = $( _.template(TileTemplate, { tags: tags, url: url, link: link, price: price }) );
+        $tile = $( _.template(TileTemplate, { tags: tags, url: image.url, width: image.width, height: image.height, link: link, price: price }) );
 
         $el.append($tile).isotope( 'appended', $tile );
 
