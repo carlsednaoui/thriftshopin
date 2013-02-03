@@ -3,7 +3,7 @@ window.TS = (function() {
   var TileTemplate = '\
 <div class="item <%= tags %>">\
 <a href="<%= link %>" target="_blank">\
-<img src="<%= url %>" />\
+<img src="<%= url %>" width="170" height="135" />\
 <div class="price"><p>$<%= Math.round(price) %></p></div>\
 </a>\
 </div>\
@@ -27,7 +27,7 @@ window.TS = (function() {
     },
 
     getImage: function() {
-      return _(this.get('Images')).pluck('url_570xN').first();
+      return _(this.get('Images')).pluck('url_170x135').first();
     },
 
     getLink: function() {
@@ -167,7 +167,7 @@ window.TS = (function() {
         }, this);
       },
 
-      onSync: function() {
+      onSync: function( collection, options ) {
         // console.log('HomeView#sync.'+this.cid, this, arguments);
         this.$el.isotope( 'reLayout' );
         this.trigger('done');
