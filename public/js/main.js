@@ -86,6 +86,14 @@ $(function(){
     }
   }
 
+  // nasty shit for centering
+  $('#main').css({ 'width': ($(window).width()/160>>0)*160, 'margin': 'auto' });
+  $(window).on('resize', _.throttle(function() {
+    $('#main').css({
+      'width': ($(window).width()/160>>0)*160,
+      'margin': 'auto'
+    });
+  },500));
 
   // search logic
   function search(keyword, val, cb){
