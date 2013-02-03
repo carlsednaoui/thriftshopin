@@ -16,8 +16,6 @@ $(function(){
   var timer = null;
   $('input').on('keyup', function(){
 
-    console.log('')
-
     var val = $(this).val();
     var num = val.replace('$','');
 
