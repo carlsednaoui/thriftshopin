@@ -60,7 +60,7 @@ $(function(){
     var by_count = _.flatten(_.toArray(groups)).reverse();
     var res = ['all'];
     for (var i = 1; i < by_count.length; i += 2) { res.push(by_count[i]); }
-    return _.reject(res, function(i){ return ['no-transition', 'item', 'isotope-item'].indexOf(i) > -1 });
+    return _.reject(res, function(i){ return ['no-transition', 'item', 'isotope-item', 'isotope-hidden'].indexOf(i) > -1 });
 
     function count(arr) {
         var a = [], prev;

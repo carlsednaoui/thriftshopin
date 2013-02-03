@@ -137,7 +137,29 @@ ul[data-liffect="fadeIn"].play li
       color: #fff
       bold()
       cursor: pointer
+
+      p
+        margin-top: 21px
+
+    .social
+      absolute: left 32px bottom 21px
+      inline-list()
+
+      li
+        size: 22
+        opacity: 0
         
+        &.twitter
+          bg: 'twitta.png'
+
+        &.fbook
+          bg: 'fb.png'
+
+        &.pinterest
+          bg: 'pinterest.png'
+
+        &:hover
+          opacity: .9
 
     img
       border: none
@@ -145,6 +167,10 @@ ul[data-liffect="fadeIn"].play li
 
     &:hover .price
       opacity: 1
+
+    &:hover .social li
+      opacity: .6
+
 
 // Isotope Filtering
 
@@ -159,24 +185,12 @@ ul[data-liffect="fadeIn"].play li
 
 .isotope
 .isotope .isotope-item
-  -webkit-transition-duration: 0.8s
-  -moz-transition-duration: 0.8s
-  -ms-transition-duration: 0.8s
-  -o-transition-duration: 0.8s
   transition-duration: 0.8s
 
 .isotope
-  -webkit-transition-property: height, width
-  -moz-transition-property: height, width
-  -ms-transition-property: height, width
-  -o-transition-property: height, width
   transition-property: height, width
 
 .isotope .isotope-item
--webkit-transition-property: -webkit-transform, opacity
--moz-transition-property: -moz-transform, opacity
--ms-transition-property: -ms-transform, opacity
--o-transition-property: -o-transform, opacity
 transition-property: transform, opacity
 
 // disabling Isotope CSS3 transitions
@@ -184,8 +198,4 @@ transition-property: transform, opacity
 .isotope.no-transition
 .isotope.no-transition .isotope-item
 .isotope .isotope-item.no-transition
-  -webkit-transition-duration: 0s
-  -moz-transition-duration: 0s
-  -ms-transition-duration: 0s
-  -o-transition-duration: 0s
   transition-duration: 0s

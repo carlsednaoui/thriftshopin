@@ -5,6 +5,11 @@ define(function(require) {
 <a href="<%= link %>" target="_blank">\
 <img src="<%= url %>" width="<%= width %>" height="<%= height %>" />\
 <div class="price"><p>$<%= Math.round(price) %></p></div>\
+<ul class="social">\
+  <li class="twitter"><a href=""></a></li>\
+  <li class="fbook"><a href=""></a></li>\
+  <li class="pinterest"><a href=""></a></li>\
+</ul>\
 </a>\
 </div>\
 ';
