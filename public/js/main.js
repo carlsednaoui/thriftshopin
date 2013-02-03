@@ -9,6 +9,7 @@ $(function(){
   // nordstrom detect
   if (window.location.href.match(/nordstrom/)) {
     $('header').addClass('nordstrom')
+    $('h1').html("i wanna spend <input type='text' value='$20' /> on awesome stuff")
   }
 
   // spin.js
