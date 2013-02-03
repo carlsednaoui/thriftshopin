@@ -159,6 +159,19 @@ $(function(){
     return false
   });
 
+  // email handling
+  $('#email .send').on('click', function(){
+    var uri = $(this).parent().find('input').val();
+    $.ajax({
+      type: 'POST',
+      data: uri,
+      url: " http://thriftshopinmailer.herokuapp.com/",
+      success: function(){
+        console.log('worked!')
+      }
+    })
+  });
+
   // initialize
   var e = jQuery.Event("keyup");
   e.which = 50;
