@@ -74,7 +74,6 @@ $(function(){
         return a;
     }
   }
-  popular_tags()
 
 
   // core logic
@@ -89,8 +88,8 @@ $(function(){
     // skimlinks.fetch({update: true});
     mainView = new TS.Views.Main({ el: '#main', collections: [ etsys ] });
     mainView.on('done', function() {
-
       $('#spin').fadeOut();
+      console.log(popular_tags())
     });
   }
 

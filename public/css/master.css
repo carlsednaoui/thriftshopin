@@ -386,6 +386,7 @@ ul[data-liffect="fadeIn"].play li {
 #main div img {
   max-width: 200px;
   border: none;
+  display: block;
 }
 #main div:hover .price {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
