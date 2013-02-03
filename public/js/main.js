@@ -8,10 +8,6 @@ $(function(){
   $('#spin').css({ left: (window.innerWidth/2) + "px" });
 
   // initialize masonry
-  $('#main').isotope({
-    itemSelector : '.item',
-    layoutMode : 'masonry'
-  });
 
   var timer = null;
   $('input').on('keyup', function(){

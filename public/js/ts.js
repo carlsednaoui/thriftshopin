@@ -150,6 +150,17 @@ window.TS = (function() {
 
         this.collections = _.isArray(options.collections) ? options.collections : [ options.collections ];
 
+        var $el = this.$el;
+
+        if( $el.hasClass('isotope') ) {
+          $el.isotope('destroy').empty();
+        }
+
+        $el.isotope({
+          itemSelector : '.item',
+          layoutMode : 'masonry'
+        });
+
         _.each(this.collections, function(collection) {
           this.listenTo(collection, 'add', this.addTiles);
           this.listenTo(collection, 'sync', this.onSync);
@@ -163,7 +174,7 @@ window.TS = (function() {
       },
 
       addTiles: function( model, collection, options ) {
-        console.log('HomeView#addTiles.'+this.cid, this, arguments);
+        // console.log('HomeView#addTiles.'+this.cid, this, arguments);
 
         var $el = this.$el,
           url, tags, $tile;
