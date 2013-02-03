@@ -12,10 +12,11 @@
     <link rel="apple-touch-icon" href="/img/touch.png">
     <title>I'm gunna pop some tags</title>
     <link rel="stylesheet" href="/css/master.css">
+    <link rel="stylesheet" href="/css/reveal.css">
     <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
   </head>
   <body>
-<header><a href="" class="settings">settings</a><a href="" class="mail">newsletter</a>
+<header><a href="" class="settings">settings</a><a href="#" data-reveal-id="email" class="mail">newsletter</a>
   <h1>
      
     I've only got
@@ -32,6 +33,12 @@
 </div>
 <div id="main"></div>
 <div id="infinite-load"></div>
+<div id="email" class="reveal-modal">
+  <h1>Want Moar?</h1>
+  <p>Hit up out fancy weekly newsletter, and we'll deliver some top quality goods straight to yo mailbox. You can unsubscribe any time : )</p>
+  <input type="text" placeholder="me@awesome.com"/>
+  <div class="send">subscribe!</div><a class="close-reveal-modal">&#215;</a>
+</div>
   </body>
   <script data-main="/js/script" src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.1/require.min.js"></script><script>protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://'; address = protocol + window.location.host + window.location.pathname + '/ws'; socket = new WebSocket(address);
 socket.onmessage = function(msg) { msg.data == 'reload' && window.location.reload() }</script>

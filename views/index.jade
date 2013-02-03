@@ -1,6 +1,6 @@
 header
   a.settings(href='') settings
-  a.mail(href='') newsletter
+  a.mail(href='#', data-reveal-id="email") newsletter
   h1 
     | I've only got
     input(type='text', value='$20')
@@ -21,3 +21,10 @@ header
 #main
 
 #infinite-load
+
+#email.reveal-modal
+  h1 Want Moar?
+  p Hit up out fancy weekly newsletter, and we'll deliver some top quality goods straight to yo mailbox. You can unsubscribe any time : )
+  input(type='text', placeholder='me@awesome.com')
+  .send subscribe!
+  a.close-reveal-modal &#215;

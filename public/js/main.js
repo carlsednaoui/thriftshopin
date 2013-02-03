@@ -22,7 +22,7 @@ $(function(){
   $('#spin').css({ left: (window.innerWidth/2) + "px" });
 
   var timer = null;
-  $('input').on('keyup', function(){
+  $('header input').on('keyup', function(){
 
     var val = $(this).val();
     var num = val.replace('$','');
@@ -162,7 +162,7 @@ $(function(){
   // initialize
   var e = jQuery.Event("keyup");
   e.which = 50;
-  $("input").trigger(e);
+  $("header input").trigger(e);
 
 });
 
