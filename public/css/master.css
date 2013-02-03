@@ -325,7 +325,7 @@ header .settings {
   width: 37px;
   height: 37px;
   background: url("/img/music.png") no-repeat;
-  margin: 14px 0 14px 30px;
+  margin: 14px 0 0 30px;
   cursor: pointer;
   float: left;
   margin-right: 20px;

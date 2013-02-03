@@ -46,7 +46,7 @@ $(function(){
   // tag aggregation
   function popular_tags(){
     var all = []
-    $('#main li').each(function(){
+    $('#main > div').each(function(){
       var tags = $(this).attr('class');
       all.push(tags.split(' '));
     });
@@ -54,9 +54,9 @@ $(function(){
     var counts = count(_.flatten(all));
     var groups = _.groupBy(counts, function(a){ return a[1] });
     var by_count = _.flatten(_.toArray(groups)).reverse();
-    var res = [];
+    var res = ['all'];
     for (var i = 1; i < by_count.length; i += 2) { res.push(by_count[i]); }
-    return res
+    return _.reject(res, function(i){ return ['no-transition', 'item', 'isotope-item'].indexOf(i) > -1 });
 
     function count(arr) {
         var a = [], prev;
@@ -87,9 +87,33 @@ $(function(){
     // skimlinks = new TS.Collections.Skimlinks({ keywords: keyword, priceRange: val });
     // skimlinks.fetch({update: true});
     mainView = new TS.Views.Main({ el: '#main', collections: [ etsys ] });
-    mainView.on('done', function() {
-      $('#spin').fadeOut();
-      console.log(popular_tags())
+    mainView.on('done', function() { search_callback(); });
+  }
+
+  function search_callback(){
+    // get rid of the spinner
+    $('#spin').fadeOut();
+
+    // populate new tags
+    $('.filters ul').empty();
+    popular_tags().slice(0,9).forEach(function(tag){
+      $('.filters ul').append("<li data-filter=" + tag + ">" + tag + "</li>");
+    });
+
+    // attach filter events to the tags
+    $('.filters ul li').on('click', function(){
+      var filter = "." + $(this).data('filter');
+      if ($(this).data('filter') === 'all') { filter = ''; }
+      $('#main').isotope({ filter: filter }, function(){
+        console.log('done');
+      });
+    });
+
+    // reset
+    $('.settings').on('click', function(){
+      $('#main').isotope({ filter: "" }, function(){
+        console.log('done');
+      });
     });
   }
 
