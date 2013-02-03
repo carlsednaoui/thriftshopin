@@ -14,7 +14,9 @@ $(function(){
 
   // spin.js
   var opts = {lines: 7, length: 3, width: 4, radius: 6, corners: 1, rotate: 0, color: '#fff', speed: 1, trail: 60, shadow: false, hwaccel: false, className: 'spinner', zIndex: 2e9, top: 'auto', left: 'auto'};
+  var opts2 = {lines: 7, length: 3, width: 4, radius: 6, corners: 1, rotate: 0, color: '#000', speed: 1, trail: 60, shadow: false, hwaccel: false, className: 'spinner', zIndex: 2e9, top: 'auto', left: 'auto'};
   new Spinner(opts).spin(document.getElementById('spin'));
+  new Spinner(opts2).spin(document.getElementById('infinite-load'));
 
   // keep it in the center
   $('#spin').css({ left: (window.innerWidth/2) + "px" });
