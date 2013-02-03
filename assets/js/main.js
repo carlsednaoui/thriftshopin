@@ -6,6 +6,11 @@ define(function(require) {
 
 $(function(){
 
+  // nordstrom detect
+  if (window.location.href.match(/nordstrom/)) {
+    $('header').addClass('nordstrom')
+  }
+
   // spin.js
   var opts = {lines: 7, length: 3, width: 4, radius: 6, corners: 1, rotate: 0, color: '#fff', speed: 1, trail: 60, shadow: false, hwaccel: false, className: 'spinner', zIndex: 2e9, top: 'auto', left: 'auto'};
   new Spinner(opts).spin(document.getElementById('spin'));
