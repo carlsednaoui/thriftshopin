@@ -82,13 +82,13 @@ $(function(){
     console.log('searching for products under $' + val[1])
     keyword = 'fashion';
     var mainView, etsys, skimlinks;
-    etsys = new TS.Collections.Etsys({ search: keyword, priceRange: val });
+    etsys = new TS.Collections.Etsys({ search: keyword, priceRange: [ val[1]*.80, val[1] ] });
     etsys.fetch({update: true});
     // skimlinks = new TS.Collections.Skimlinks({ keywords: keyword, priceRange: val });
     // skimlinks.fetch({update: true});
-    mainView = new TS.Views.Main({ el: '#main', collections: [ etsys ] });
+    mainView = new TS.Views.Main({ el: '#main', width: 170, collections: [ etsys ] });
     mainView.on('done', function() {
-      $('#spin').fadeOut();
+      $('#spin').fadeOut(); 
       console.log(popular_tags())
     });
   }

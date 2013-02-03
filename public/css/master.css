@@ -384,7 +384,6 @@ ul[data-liffect="fadeIn"].play li {
   cursor: pointer;
 }
 #main div img {
-  max-width: 200px;
   border: none;
   display: block;
 }
