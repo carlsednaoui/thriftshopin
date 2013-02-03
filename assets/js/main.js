@@ -100,7 +100,6 @@ $(function(){
   // search logic
   function search(keyword, val, cb){
     $('#spin').fadeIn();
-    console.log('searching for products under $' + val[1])
     keyword = 'fashion';
     var mainView, etsys, skimlinks;
     etsys = new TS.Collections.Etsys({ search: keyword, priceRange: [ val[1]*.80, val[1] ] });

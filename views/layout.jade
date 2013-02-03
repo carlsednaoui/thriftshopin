@@ -22,6 +22,17 @@ html
   //- add other scripts through require.js, not here
   script(data-main='/js/script', src='//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.1/require.min.js')
 
+  script
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-38113487-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
   //- this must be included for live reload to work in developement
   //- it will be automatically ignored when deployed
   != livereload

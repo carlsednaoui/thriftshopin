@@ -210,6 +210,8 @@ define(function(require) {
             }
           });
 
+          // $(window).off('scroll');
+
           _.each(this.collections, function(collection) {
             this.listenTo(collection, 'add', this.addTiles);
             this.listenTo(collection, 'sync', this.onSync);

@@ -13,7 +13,6 @@ requirejs.config({
     'backbone': '//cdnjs.cloudflare.com/ajax/libs/backbone.js/0.9.10/backbone-min',
     'underscore': '//cdnjs.cloudflare.com/ajax/libs/lodash.js/1.0.0-rc.3/lodash.min',
     'spin': '/js/spin.min',
-    'analytics': '/js/analytics',
     'reveal': '/js/reveal'
   },
   shim: {
