@@ -215,12 +215,18 @@ define(function(require) {
           _.each(this.collections, function(collection) {
             this.listenTo(collection, 'add', this.addTiles);
             this.listenTo(collection, 'sync', this.onSync);
+            this.listenTo(collection, 'request', this.onRequest);
           }, this);
+        },
+
+        onRequest: function() {
+          $('#infinite-load').show();
         },
 
         onSync: function( collection, options ) {
           // console.log('HomeView#sync.'+this.cid, this, arguments);
           this.$el.isotope( 'reLayout' );
+          $('#infinite-load').hide();
           this.trigger('done');
         },
 
