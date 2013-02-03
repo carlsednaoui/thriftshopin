@@ -13,10 +13,11 @@ $(function(){
   // keep it in the center
   $('#spin').css({ left: (window.innerWidth/2) + "px" });
 
-  // initialize masonry
-
   var timer = null;
   $('input').on('keyup', function(){
+
+    console.log('')
+
     var val = $(this).val();
     var num = val.replace('$','');
 
@@ -134,6 +135,11 @@ $(function(){
     });
     return false
   });
+
+  // initialize
+  var e = jQuery.Event("keyup");
+  e.which = 50;
+  $("input").trigger(e);
 
 });
 
