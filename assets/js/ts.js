@@ -220,13 +220,13 @@ define(function(require) {
         },
 
         onRequest: function() {
-          $('#infinite-load').show();
+          $('#infinite-load').css({ opacity: 1 });
         },
 
         onSync: function( collection, options ) {
           // console.log('HomeView#sync.'+this.cid, this, arguments);
           this.$el.isotope( 'reLayout' );
-          $('#infinite-load').hide();
+          $('#infinite-load').css({ opacity: 0 });
           this.trigger('done');
         },
 

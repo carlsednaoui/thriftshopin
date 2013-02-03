@@ -164,7 +164,7 @@ $(function(){
     var uri = $(this).parent().find('input').val();
     $.ajax({
       type: 'POST',
-      data: uri,
+      data: "email=" + uri,
       url: " http://thriftshopinmailer.herokuapp.com/",
       success: function(){
         console.log('worked!')
